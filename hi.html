@@ -1,0 +1,100 @@
+
+<div id="app" style="min-height: 100vh; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 2rem 1.5rem; text-align: center; font-family: sans-serif; background-image: url('images/background.jpg'); background-size: cover; background-position: center; background-repeat: no-repeat;">
+
+  <!-- MAIN SCREEN -->
+  <div id="main-screen">
+    <div style="background: rgba(0,0,0,0.55); backdrop-filter: blur(4px); border-radius: 20px; padding: 2rem 1.75rem; border: 1px solid rgba(255,255,255,0.12); max-width: 300px; margin: 0 auto 1.5rem;">
+      <div style="font-size: 56px; margin-bottom: 1rem;">🙏</div>
+      <div style="position: relative; padding: 0.5rem 1rem;">
+        <span style="font-size: 4.5rem; color: rgba(255,255,255,0.25); position: absolute; top: -1rem; left: 0; line-height: 1; font-family: Georgia, serif;">"</span>
+        <p style="font-size: 1.2rem; font-weight: 500; color: #fff; line-height: 1.6; margin: 0; padding: 0 0.5rem;">I'm sorry, would you accept my apology?</p>
+        <span style="font-size: 4.5rem; color: rgba(255,255,255,0.25); position: absolute; bottom: -2rem; right: 0; line-height: 1; font-family: Georgia, serif;">"</span>
+      </div>
+    </div>
+    <div style="background: rgba(0,0,0,0.5); backdrop-filter: blur(4px); border-radius: 16px; padding: 1.25rem 1.5rem; border: 1px solid rgba(255,255,255,0.1); max-width: 300px; margin: 0 auto; display: flex; flex-direction: column; gap: 10px;">
+      <button onclick="handleAccept()" style="padding: 13px 24px; border-radius: 12px; border: 1px solid rgba(100,200,120,0.5); background: rgba(60,160,80,0.35); color: #a8f0b0; font-size: 1rem; font-weight: 600; cursor: pointer; letter-spacing: 0.3px;">Accept</button>
+      <button onclick="handleReject()" style="padding: 13px 24px; border-radius: 12px; border: 1px solid rgba(255,255,255,0.2); background: rgba(255,255,255,0.08); color: #f0e8e8; font-size: 1rem; font-weight: 600; cursor: pointer; letter-spacing: 0.3px;">Reject 🚪</button>
+    </div>
+  </div>
+
+  <!-- ACCEPT SCREEN -->
+  <div id="accept-screen" style="display:none;">
+    <div style="background: rgba(0,0,0,0.55); backdrop-filter: blur(4px); border-radius: 20px; padding: 2rem 2rem; border: 1px solid rgba(100,200,120,0.3); max-width: 300px; margin: 0 auto 1.5rem;">
+      <div style="font-size: 3.5rem; margin-bottom: 0.75rem;">🎉</div>
+      <div style="font-size: 1.8rem; font-weight: 700; color: #a8f0b0; margin-bottom: 0.5rem;">Yayyyyyyyyyyyy!!!</div>
+      <div style="font-size: 0.95rem; color: rgba(255,255,255,0.6);">Thank youuuu </div>
+    </div>
+    <div style="background: rgba(0,0,0,0.45); border-radius: 12px; padding: 0.75rem 1.25rem; display: inline-block; border: 1px solid rgba(255,255,255,0.08);">
+      <button onclick="resetAll()" style="background: transparent; border: none; color: rgba(255,255,255,0.5); font-size: 0.85rem; cursor: pointer;">start over</button>
+    </div>
+  </div>
+
+  <!-- REJECT SCREEN -->
+  <div id="reject-screen" style="display:none; width: 100%; max-width: 320px;">
+    <div style="background: rgba(0,0,0,0.6); backdrop-filter: blur(4px); border-radius: 20px; padding: 1.5rem 1.75rem; border: 1px solid rgba(255,255,255,0.12); margin-bottom: 1.25rem;">
+      <div id="reject-msg" style="font-size: 1.3rem; font-weight: 600; color: #fff; line-height: 1.5; margin-bottom: 1.25rem; word-break: break-word;"></div>
+      <div style="overflow: hidden; display: flex; align-items: center; justify-content: center; width: 140px; height: 140px; border-radius: 50%; margin: 0 auto; border: 2px solid rgba(255,255,255,0.2);">
+        <img id="sorry-img" src="images/sorry.jpg" alt="sorry" style="width: 100%; height: 100%; object-fit: cover; transform: scale(1); transition: transform 0.4s ease;" />
+      </div>
+    </div>
+
+    <div style="background: rgba(0,0,0,0.5); backdrop-filter: blur(4px); border-radius: 16px; padding: 1.25rem 1.5rem; border: 1px solid rgba(255,255,255,0.1); display: flex; flex-direction: column; gap: 10px; margin-bottom: 1rem;">
+      <button onclick="handleAccept()" style="padding: 13px 24px; border-radius: 12px; border: 1px solid rgba(100,200,120,0.5); background: rgba(60,160,80,0.35); color: #a8f0b0; font-size: 1rem; font-weight: 600; cursor: pointer;">Accept </button>
+      <button id="reject-btn-2" onclick="handleReject()" style="padding: 13px 24px; border-radius: 12px; border: 1px solid rgba(255,255,255,0.2); background: rgba(255,255,255,0.08); color: #f0e8e8; font-size: 1rem; font-weight: 600; cursor: pointer;">Reject again 🚪</button>
+    </div>
+
+    <div id="max-msg" style="display:none; background: rgba(0,0,0,0.45); border-radius: 10px; padding: 0.6rem 1rem; border: 1px solid rgba(255,255,255,0.08);">
+      <span style="font-size: 0.85rem; color: rgba(255,255,255,0.5);">that's the 30th time... 😭</span>
+    </div>
+
+    <div style="margin-top: 0.75rem;">
+      <button onclick="resetAll()" style="background: transparent; border: none; color: rgba(255,255,255,0.4); font-size: 0.85rem; cursor: pointer;">start over</button>
+    </div>
+  </div>
+
+</div>
+
+<script>
+let rejectCount = 0;
+const MAX = 30;
+
+function buildSorryText(count) {
+  const yCount = 2 + (count - 1) * 2;
+  return "I'm soww" + 'y'.repeat(Math.min(yCount, 60)) ;
+}
+
+function handleAccept() {
+  document.getElementById('main-screen').style.display = 'none';
+  document.getElementById('reject-screen').style.display = 'none';
+  document.getElementById('accept-screen').style.display = 'block';
+}
+
+function handleReject() {
+  if (rejectCount >= MAX) return;
+  rejectCount++;
+  document.getElementById('main-screen').style.display = 'none';
+  document.getElementById('accept-screen').style.display = 'none';
+  document.getElementById('reject-screen').style.display = 'block';
+  document.getElementById('reject-msg').textContent = buildSorryText(rejectCount);
+  const scale = 1 + (rejectCount - 1) * (9 / (MAX - 1));
+  document.getElementById('sorry-img').style.transform = `scale(${scale.toFixed(2)})`;
+  if (rejectCount >= MAX) {
+    const btn = document.getElementById('reject-btn-2');
+    btn.disabled = true;
+    btn.style.opacity = '0.3';
+    document.getElementById('max-msg').style.display = 'block';
+  }
+}
+
+function resetAll() {
+  rejectCount = 0;
+  document.getElementById('main-screen').style.display = 'block';
+  document.getElementById('accept-screen').style.display = 'none';
+  document.getElementById('reject-screen').style.display = 'none';
+  document.getElementById('sorry-img').style.transform = 'scale(1)';
+  const btn = document.getElementById('reject-btn-2');
+  btn.disabled = false;
+  btn.style.opacity = '1';
+  document.getElementById('max-msg').style.display = 'none';
+}
+</script>
